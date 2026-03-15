@@ -28,3 +28,11 @@ def update_task(task_id: int, updated_task: Task):
             tasks[index] = updated_task
             return updated_task
     return {"error": "Task not found"}
+
+@router.delete("/tasks/{task_id}")
+def delete_task(task_id: int):
+    for index, task in enumerate(tasks):
+        if task.id == task_id:
+            del tasks[index]
+            return {"message": "Task deleted"}
+    return {"error": "Task not found"}
