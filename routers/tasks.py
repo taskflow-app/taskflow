@@ -13,3 +13,10 @@ def get_tasks():
 def create_task(task: Task):
     tasks.append(task)
     return task 
+
+@router.get("/tasks/{task_id}")
+def get_task(task_id: int):
+    for task in tasks:
+        if task.id == task_id:
+            return task
+    return {"error": "Task not found"}
