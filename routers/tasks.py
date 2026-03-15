@@ -20,3 +20,11 @@ def get_task(task_id: int):
         if task.id == task_id:
             return task
     return {"error": "Task not found"}
+
+@router.put("/tasks/{task_id}")
+def update_task(task_id: int, updated_task: Task):
+    for index, task in enumerate(tasks):
+        if task.id == task_id:
+            tasks[index] = updated_task
+            return updated_task
+    return {"error": "Task not found"}
